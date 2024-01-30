@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        #cat-container {
+            text-align: center;
+        }
+
+        #cat-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        #question {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 0 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #btn-yes {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+        }
+
+        #btn-no {
+            background-color: #f44336;
+            color: white;
+            border: none;
+        }
+    </style>
+    <title>Приглашение</title>
+</head>
+<body>
+    <div id="cat-container">
+        <img id="cat-image" src="https://lh4.ggpht.com/TEqXnEPvrups4miZjIP3hjrxTnZsTgLQqe6nDT2mlSipPWXGh4N66o3JH8bWkaEcKxfy" alt="Милый котик">
+        <div id="question">Пойдем гулять?</div>
+        <button class="btn" id="btn-yes">Да</button>
+        <button class="btn" id="btn-no">Нет</button>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $("#btn-yes").on("click", function () {
+                // Здесь вам нужно заменить 'YOUR_BOT_TOKEN' на реальный токен вашего бота
+                var botToken = '6390700368:AAEYYqFg8fmxDpf7VzDZ4qI_KQXMjwtajjA';
+                var chatId = '2093027799';  // Замените на ваш ID чата
+
+                // Отправляем запрос к Telegram Bot API для отправки сообщения
+                $.post(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                    chat_id: chatId,
+                    text: 'Котик согласился гулять!',
+                }).done(function (data) {
+                    console.log(data);
+                    // Ваш код обработки успешной отправки сообщения
+                }).fail(function (error) {
+                    console.error(error);
+                    // Ваш код обработки ошибки
+                });
+            });
+        });
+        $(document).ready(function () {
+            $("#btn-no").on("click", function () {
+                // Здесь вам нужно заменить 'YOUR_BOT_TOKEN' на реальный токен вашего бота
+                var botToken = '6390700368:AAEYYqFg8fmxDpf7VzDZ4qI_KQXMjwtajjA';
+                var chatId = '2093027799';  // Замените на ваш ID чата
+
+                // Отправляем запрос к Telegram Bot API для отправки сообщения
+                $.post(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                    chat_id: chatId,
+                    text: 'Котик отказался :(',
+                }).done(function (data) {
+                    console.log(data);
+                    // Ваш код обработки успешной отправки сообщения
+                }).fail(function (error) {
+                    console.error(error);
+                    // Ваш код обработки ошибки
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+</body>
+</html>
