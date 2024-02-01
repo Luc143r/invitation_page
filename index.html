@@ -60,16 +60,27 @@
         <button class="btn" id="btn-no">Нет</button>
     </div>
     <script>
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
         $(document).ready(function () {
             $("#btn-yes").on("click", function () {
                 // Здесь вам нужно заменить 'YOUR_BOT_TOKEN' на реальный токен вашего бота
                 var botToken = '6390700368:AAEYYqFg8fmxDpf7VzDZ4qI_KQXMjwtajjA';
                 var chatId = '2093027799';  // Замените на ваш ID чата
+                var refValue = getParameterByName('ref');
 
                 // Отправляем запрос к Telegram Bot API для отправки сообщения
                 $.post(`https://api.telegram.org/bot${botToken}/sendMessage`, {
                     chat_id: chatId,
-                    text: 'Котик согласился гулять!',
+                    text: `Котик согласился погулять :)\nref: ${refValue}`,
                 }).done(function (data) {
                     console.log(data);
                     // Ваш код обработки успешной отправки сообщения
@@ -79,16 +90,18 @@
                 });
             });
         });
+
         $(document).ready(function () {
             $("#btn-no").on("click", function () {
                 // Здесь вам нужно заменить 'YOUR_BOT_TOKEN' на реальный токен вашего бота
                 var botToken = '6390700368:AAEYYqFg8fmxDpf7VzDZ4qI_KQXMjwtajjA';
                 var chatId = '2093027799';  // Замените на ваш ID чата
+                var refValue = getParameterByName('ref');
 
                 // Отправляем запрос к Telegram Bot API для отправки сообщения
                 $.post(`https://api.telegram.org/bot${botToken}/sendMessage`, {
                     chat_id: chatId,
-                    text: 'Котик отказался :(',
+                    text: `Котик отказался :(\nref: ${refValue}`,
                 }).done(function (data) {
                     console.log(data);
                     // Ваш код обработки успешной отправки сообщения
